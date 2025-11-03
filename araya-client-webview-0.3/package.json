@@ -1,0 +1,38 @@
+{
+  "name": "araya-client-webview",
+  "version": "0.3.0",
+  "description": "Lightweight ChatGPT desktop client via WebView (no API key). Loads only the latest messages for speed.",
+  "main": "main.js",
+  "author": "Araya",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder -w --x64"
+  },
+  "build": {
+    "appId": "me.araya.client.webview",
+    "productName": "Araya Client WebView",
+    "asar": true,
+    "portable": true,
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "artifactName": "Araya-Client-WebView-${version}-${os}-${arch}.${ext}"
+    }
+  },
+  "dependencies": {
+    "electron": "^31.2.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.13.3"
+  }
+}
