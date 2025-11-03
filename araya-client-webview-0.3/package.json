@@ -23,16 +23,12 @@
       "buildResources": "build"
     },
     "win": {
-      "target": [
-        "portable"
-      ],
+      "target": ["portable"],
       "artifactName": "Araya-Client-WebView-${version}-${os}-${arch}.${ext}"
     }
   },
-  "dependencies": {
-    "electron": "^31.2.0"
-  },
   "devDependencies": {
+    "electron": "^31.2.0",
     "electron-builder": "^24.13.3"
   }
 }
