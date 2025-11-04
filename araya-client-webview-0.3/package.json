@@ -9,28 +9,28 @@
     "start": "electron .",
     "dist": "electron-builder -w --x64"
   },
-"build": {
-  "appId": "me.araya.client.webview",
-  "productName": "Araya Client WebView",
-  "asar": true,
-  "files": [
-    "main.js",
-    "preload.js",
-    "renderer/**/*"
-  ],
-  "directories": {
-    "buildResources": "build"
-  },
-  "win": {
-    "target": [
-      {
-        "target": "portable",
-        "arch": ["x64"]
-      }
+  "build": {
+    "appId": "me.araya.client.webview",
+    "productName": "Araya Client WebView",
+    "asar": true,
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*"
     ],
-    "artifactName": "Araya-Client-WebView-${version}-${os}-${arch}.${ext}"
-  }
-}
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "Araya-Client-WebView-${version}-${os}-${arch}.${ext}"
+    }
+  },
   "devDependencies": {
     "electron": "^31.2.0",
     "electron-builder": "^24.13.3"
