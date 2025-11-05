@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Araya Client WebView</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:16px}
+    .row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+    .note{color:#666;font-size:12px}
+    #status{white-space:pre-wrap;background:#f7f7f7;border:1px solid #e5e5e5;border-radius:8px;padding:8px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="row">
+    <button id="googleBtn">Войти через Google</button>
+    <span class="note">Откроется системный браузер, после входа вернёт результат сюда.</span>
+  </div>
+  <div class="row">
+    <button id="more">Показать +50 сообщений</button>
+    <button id="reset">Сбросить лимит до 50</button>
+  </div>
+  <div id="status"></div>
+  <script>
+    const st = document.getElementById('status');
+    document.getElementById('googleBtn').onclick = async () => {
+      st.textContent = 'Открываю браузер…';
+      try{
+        const tokens = await window.araya.googleSignIn();
+        st.textContent = 'OK:\n' + JSON.stringify(tokens, null, 2);
+      }catch(e){ st.textContent = 'Ошибка: ' + (e?.message || e); }
+    };
+    document.getElementById('more').onclick = ()=> window.araya.setLimit(1000000);
+    document.getElementById('reset').onclick = ()=> window.araya.setLimit(50);
+    window.addEventListener('araya:oauthResult', (ev)=>{
+      const d = ev.detail||{};
+      st.textContent = d.ok ? ('OK:\n' + JSON.stringify(d.tokens,null,2)) : ('Ошибка: '+d.error);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "name": "araya-client-webview",
+  "version": "0.3.1",
+  "description": "ChatGPT desktop client via WebView (no OpenAI API key). Google OAuth via external browser. Renders only last N messages for speed.",
+  "main": "main.js",
+  "author": "Araya",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder -w --x64"
+  },
+  "build": {
+    "appId": "me.araya.client.webview",
+    "productName": "Araya Client WebView",
+    "asar": true,
+    "files": [
+      "main.js",
+      "preload.js",
+      "oauth.js",
+      "renderer/**/*",
+      ".env"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Araya-Client-WebView-${version}-${os}-${arch}.${ext}"
+    }
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "electron": "^31.2.0",
+    "electron-builder": "^24.13.3"
+  }
+}
