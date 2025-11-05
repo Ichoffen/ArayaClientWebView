@@ -8,21 +8,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+
       - name: Install
         run: npm ci || npm i
-        working-directory: araya-client-webview-0.3
+        working-directory: araya-client-webview-0.3.1
 
-      - name: Create .env for build        # ← ДОБАВЛЕННЫЙ ШАГ
-        working-directory: araya-client-webview-0.3
+      - name: Create .env for build (from GitHub Secrets)
+        working-directory: araya-client-webview-0.3.1
         run: |
           echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} > .env
           echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
 
       - name: Build portable
         run: npm run dist
-        working-directory: araya-client-webview-0.3
+        working-directory: araya-client-webview-0.3.1
+
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: araya-client-webview-dist
-          path: araya-client-webview-0.3/dist/**
+          path: araya-client-webview-0.3.1/dist/**
