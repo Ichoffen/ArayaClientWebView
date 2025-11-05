@@ -11,11 +11,12 @@ jobs:
       - name: Install
         run: npm ci || npm i
         working-directory: araya-client-webview-0.3
-        - name: Create .env for build
-  working-directory: araya-client-webview-0.3
-  run: |
-    echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} > .env
-    echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
+
+      - name: Create .env for build        # ← ДОБАВЛЕННЫЙ ШАГ
+        working-directory: araya-client-webview-0.3
+        run: |
+          echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} > .env
+          echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
 
       - name: Build portable
         run: npm run dist
