@@ -1,3 +1,7 @@
+require('dotenv').config();
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || '';
+
 const { app, BrowserWindow, session, Menu, shell } = require('electron');
 const path = require('path');
 const urlLib = require('url');
