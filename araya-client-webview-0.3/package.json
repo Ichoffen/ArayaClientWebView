@@ -16,7 +16,8 @@
     "files": [
       "main.js",
       "preload.js",
-      "renderer/**/*"
+      "renderer/**/*",
+      ".env"
     ],
     "directories": {
       "buildResources": "build"
@@ -30,6 +31,9 @@
       ],
       "artifactName": "Araya-Client-WebView-${version}-${os}-${arch}.${ext}"
     }
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "electron": "^31.2.0",
