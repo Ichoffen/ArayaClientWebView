@@ -2,7 +2,7 @@
 const { shell } = require('electron');
 const http = require('http');
 const url = require('url');
-const fetch = require('node-fetch');
+const fetch = (...args) => import('node-fetch').then(m => m.default(...args));
 require('dotenv').config();
 
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';
